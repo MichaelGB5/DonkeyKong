@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Donkey Kong Clone</title>
+  <style>
+    body { 
+      margin: 0; 
+      background: black; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      height: 100vh; 
+    }
+    canvas { 
+      border: 4px solid gold; 
+      background: #222; 
+    }
+  </style>
+</head>
+<body>
+  <script src="https://pygame-web.github.io/archives/0.8/pygbag/pygbag.js"></script>
+  <script>
+    // This tells pygbag to load donkey_kong.py
+    window.pygbag = { pyfile: "donkey_kong.py" };
+  </script>
+</body>
+</html>
