@@ -1,13 +1,23 @@
-body {
-  margin: 0;
-  background: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+:root{
+  --bg1:#1b1530;
+  --bg2:#0e0b14;
+  --panel:#111018;
+  --gold:#e6b800;
 }
-
-canvas {
-  border: 4px solid gold;
-  background: #222;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(180deg,var(--bg1),var(--bg2));
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+  color:#eee;
+}
+canvas{
+  image-rendering: pixelated;
+  border: 6px solid rgba(230,184,0,0.95);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+  background: linear-gradient(180deg,#0e0b14,#06060a);
 }
