@@ -380,6 +380,12 @@ function draw() {
   for (let b of barrels) b.draw();
   player.draw();
 }
+function drawPlayer(x, y) {
+  ctx.fillStyle = "#ffcc00"; // yellow head
+  ctx.fillRect(x, y, 16, 16);
+  ctx.fillStyle = "#ff0000"; // red body
+  ctx.fillRect(x, y + 16, 16, 16);
+}
 
 /* main animation loop */
 let last = performance.now();
