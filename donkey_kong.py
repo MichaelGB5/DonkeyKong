@@ -1,6 +1,7 @@
 import pygame
 import random
 
+# --- Browser-ready Donkey Kong clone (pygbag) ---
 WIDTH, HEIGHT = 600, 700
 FPS = 60
 
@@ -108,25 +109,34 @@ for x,y,h in ladder_data:
     ladders.add(l)
     all_sprites.add(l)
 
-BARREL_EVENT = pygame.USEREVENT+1
-pygame.time.set_timer(BARREL_EVENT,2000)
+# Barrel spawn timer
+barrel_spawn_timer = 0
 
+# --- Game Loop ---
 running=True
 while running:
+    pygame.event.pump()  # Ensure pygbag captures inputs
     clock.tick(FPS)
     keys = pygame.key.get_pressed()
-    for event in pygame.event.get():
-        if event.type==pygame.QUIT: running=False
-        if event.type==BARREL_EVENT:
-            b = Barrel(50,80)
-            barrels.add(b)
-            all_sprites.add(b)
+
+    # Spawn barrels every ~2 seconds
+    barrel_spawn_timer += 1
+    if barrel_spawn_timer >= FPS*2:
+        b = Barrel(50,80)
+        barrels.add(b)
+        all_sprites.add(b)
+        barrel_spawn_timer = 0
+
     player.update(platforms,ladders,keys)
     barrels.update(platforms)
+
+    # Collision check
     if pygame.sprite.spritecollideany(player,barrels):
         player.rect.center = (50, HEIGHT-60)
         barrels.empty()
         all_sprites = pygame.sprite.Group(player,*platforms,*ladders)
+
+    # Draw
     screen.fill(BLACK)
     all_sprites.draw(screen)
     screen.blit(font.render("Donkey Kong Clone",True,WHITE),(10,10))
